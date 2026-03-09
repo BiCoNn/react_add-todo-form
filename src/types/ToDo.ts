@@ -5,6 +5,7 @@ type ToDo = {
   title: string;
   completed: boolean;
   userId: User['id'];
+  user?: User;
 };
 
 export default ToDo;

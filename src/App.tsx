@@ -12,8 +12,12 @@ import ToDo from './types/ToDo';
 export const App = () => {
   const users = usersFromServer;
   // const todos = todosFromServer;
-
-  const [todos, setTodos] = useState(todosFromServer);
+  const [todos, setTodos] = useState<ToDo[]>(
+    todosFromServer.map(todo => ({
+      ...todo,
+      user: usersFromServer.find(user => user.id === todo.userId)!,
+    })),
+  );
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [userError, setUserError] = useState(false);
 
@@ -61,7 +65,8 @@ export const App = () => {
       id: maxId,
       title: title,
       completed: false,
-      userId: selectedUser!.id,
+      userId: selectedUser.id,
+      user: selectedUser,
     };
 
     setTitle('');
@@ -78,6 +83,7 @@ export const App = () => {
 
       <form action="/api/todos" method="POST" onSubmit={addTaskHandler}>
         <div className="field">
+          <label htmlFor="titleInput">Title: </label>
           <input
             type="text"
             data-cy="titleInput"
@@ -89,6 +95,7 @@ export const App = () => {
         </div>
 
         <div className="field">
+          <label htmlFor="userSelect">User: </label>
           <select
             data-cy="userSelect"
             value={selectedUser?.username ?? '0'}
@@ -111,7 +118,7 @@ export const App = () => {
           Add
         </button>
       </form>
-      <TodoList todos={todos} />
+      <TodoList todos={todos} users={usersFromServer} />
     </div>
   );
 };

@@ -1,12 +1,13 @@
 import { UserInfo } from '../UserInfo';
 import ToDo from '../../types/ToDo';
-import users from '../../api/users';
+import User from '../../types/User';
 
 type Props = {
   todo: ToDo;
+  users: User[];
 };
 
-export const TodoInfo = ({ todo }: Props) => {
+export const TodoInfo = ({ todo, users }: Props) => {
   const taskUser = users.find(u => u.id === todo.userId);
 
   return (
