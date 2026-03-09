@@ -64,12 +64,12 @@ export const App = () => {
       userId: selectedUser!.id,
     };
 
-    setTodos(prev => [...prev, newTask]);
-
     setTitle('');
     setSelectedUser(null);
     setUserError(false);
     setTitleError(false);
+
+    setTodos(prev => [...prev, newTask]);
   };
 
   return (
