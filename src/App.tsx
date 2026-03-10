@@ -118,7 +118,7 @@ export const App = () => {
           Add
         </button>
       </form>
-      <TodoList todos={todos} users={usersFromServer} />
+      <TodoList todos={todos} />
     </div>
   );
 };
