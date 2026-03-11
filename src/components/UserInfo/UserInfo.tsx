@@ -1,10 +1,12 @@
 import User from '../../types/User';
-type Props = Pick<User, 'name' | 'email'>;
+type Props = {
+  user: User;
+};
 
-export const UserInfo = ({ name, email }: Props) => {
+export const UserInfo = ({ user }: Props) => {
   return (
-    <a className="UserInfo" href={`mailto:${email}`}>
-      {name}
+    <a className="UserInfo" href={`mailto:${user.email}`}>
+      {user.name}
     </a>
   );
 };

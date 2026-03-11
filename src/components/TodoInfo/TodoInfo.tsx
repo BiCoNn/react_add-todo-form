@@ -15,7 +15,7 @@ export const TodoInfo = ({ todo }: Props) => {
     >
       <h2 className="TodoInfo__title">{todo.title}</h2>
 
-      {todo.user && <UserInfo name={todo.user.name} email={todo.user.email} />}
+      {todo.user && <UserInfo user={todo.user} />}
     </article>
   );
 };
